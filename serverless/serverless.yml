@@ -1,0 +1,25 @@
+org: jecaicedo
+service: serverless
+
+provider:
+  name: aws
+  runtime: python3.12
+  region: us-east-1
+
+functions:
+  app:
+    handler: app.main.handler
+    events:
+      - httpApi:
+          path: /api/five_attributes
+          method: get
+      - httpApi:
+          path: /api/ten_attributes
+          method: get
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: true
